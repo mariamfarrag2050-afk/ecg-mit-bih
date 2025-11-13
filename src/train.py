@@ -10,7 +10,7 @@ from utils import *
 
 def train(config, X, y, Xval=None, yval=None):
     
-    classes = ['N','V','/','A','F','~']#,'L','R',f','j','E','a']#,'J','Q','e','S']
+    classes = ['N','V'] 
     print("Initial shapes - X:", X.shape, "y:", y.shape)
     print("Initial validation shapes - Xval:", Xval.shape if Xval is not None else None, "yval:", yval.shape if yval is not None else None)
     print("Any NaN in initial X:", np.any(np.isnan(X)), "y:", np.any(np.isnan(y)))

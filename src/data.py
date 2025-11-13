@@ -38,15 +38,18 @@ from utils import *
 from config import get_config
 
 def preprocess( split ):
-    nums = ['100','101','102','103','104','105','106','107','108','109','111','112','113','114','115','116','117','118','119','121','122','123','124','200','201','202','203','205','207','208','209','210','212','213','214','215','217','219','220','221','222','223','228','230','231','232','233','234']
-    features = ['MLII', 'V1', 'V2', 'V4', 'V5'] 
+    nums = ['cu01','cu02','cu03','cu04','cu05','cu06','cu07','cu08','cu09','cu10',
+        'cu11','cu12','cu13','cu14','cu15','cu16','cu17','cu18','cu19','cu20',
+        'cu21','cu22','cu23','cu24','cu25','cu26','cu27','cu28','cu29','cu30',
+        'cu31','cu32','cu33','cu34','cu35']
+    features = ['MLII', 'V1'] 
 
     if split :
-        testset = ['101', '105','114','118', '124', '201', '210' , '217']
+        testset = ['cu03','cu07','cu12','cu18','cu22','cu28','cu34']
         trainset = [x for x in nums if x not in testset]
 
     def dataSaver(dataSet, datasetname, labelsname):
-        classes = ['N','V','/','A','F','~']#,'L','R',f','j','E','a']#,'J','Q','e','S']
+        classes = ['N','V']
         Nclass = len(classes)
         datadict, datalabel= dict(), dict()
 
@@ -123,11 +126,13 @@ def preprocess( split ):
 def main(config):
     def Downloadmitdb():
         ext = ['dat', 'hea', 'atr']
-        nums = ['100','101','102','103','104','105','106','107','108','109','111','112','113','114','115','116','117','118','119','121','122','123','124','200','201','202','203','205','207','208','209','210','212','213','214','215','217','219','220','221','222','223','228','230','231','232','233','234']
+        nums = ['cu01','cu02','cu03','cu04','cu05','cu06','cu07','cu08','cu09','cu10',
+        'cu11','cu12','cu13','cu14','cu15','cu16','cu17','cu18','cu19','cu20',
+        'cu21','cu22','cu23','cu24','cu25','cu26','cu27','cu28','cu29','cu30',
+        'cu31','cu32','cu33','cu34','cu35']
         for num in tqdm(nums):
             for e in ext:
-                url = "https://physionet.org/physiobank/database/mitdb/"
-                url = url + num +"."+e
+                url = f"https://physionet.org/files/cudb/1.0.0/{num}/{num}.{e}"
                 mkdir_recursive('dataset')
                 cmd = "cd dataset && curl -O "+url
                 os.system(cmd)
